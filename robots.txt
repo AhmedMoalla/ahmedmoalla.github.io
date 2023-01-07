@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://blog.amoalla.dev/sitemap.xml

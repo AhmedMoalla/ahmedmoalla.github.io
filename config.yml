@@ -1,5 +1,5 @@
 baseURL: 'https://blog.amoalla.dev/'
-title: Ahmed's blog
+title: Blog - Ahmed Moalla
 paginate: 5
 theme: PaperMod
 
@@ -8,35 +8,43 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45
+#googleAnalytics: UA-123-45
 
 minify:
   disableXML: true
   minifyOutput: true
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+disqusShortname: amoalla
+
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
+  title: Ahmed's
   description: "ExampleSite description"
   keywords: [Blog, Portfolio, PaperMod]
-  author: Me
+  author: Ahmed Moalla
   # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+#  images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
 
   ShowReadingTime: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: false
-  ShowWordCount: true
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
+  ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
-  comments: false
+  comments: true
   hidemeta: false
   hideSummary: false
   showtoc: false
@@ -52,13 +60,13 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
+    text: "Ahmed Moalla"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
   # profile-mode
   profileMode:
-    enabled: false # needs to be explicitly set
+    enabled: true # needs to be explicitly set
     title: ExampleSite
     subtitle: "This is subtitle"
     imageUrl: "<img location>"
@@ -72,9 +80,9 @@ params:
         url: tags
 
   # home-info mode
-  homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+#  homeInfoParams:
+#    Title: "Hi there \U0001F44B"
+#    Content: Welcome to my blog
 
   socialIcons:
     - name: twitter
@@ -83,24 +91,26 @@ params:
       url: "https://stackoverflow.com"
     - name: github
       url: "https://github.com/"
+    - name: linkedin
+      url: "https://linkedin.com/"
 
-  analytics:
-    google:
-      SiteVerificationTag: "XYZabc"
-    bing:
-      SiteVerificationTag: "XYZabc"
-    yandex:
-      SiteVerificationTag: "XYZabc"
+#  analytics:
+#    google:
+#      SiteVerificationTag: "XYZabc"
+#    bing:
+#      SiteVerificationTag: "XYZabc"
+#    yandex:
+#      SiteVerificationTag: "XYZabc"
 
   cover:
     hidden: true # hide everywhere but not in structured data
     hiddenInList: true # hide on list pages and home
     hiddenInSingle: true # hide on single page
 
-  editPost:
-    URL: "https://github.com/<path_to_repo>/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+#  editPost:
+#    URL: "https://github.com/<path_to_repo>/content"
+#    Text: "Suggest Changes" # edit text
+#    appendFilePath: true # to append file path to Edit link
 
   # for search
   # https://fusejs.io/api/options.html
@@ -112,24 +122,22 @@ params:
     threshold: 0.4
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
+
 menu:
   main:
-    - identifier: categories
-      name: categories
-      url: /categories/
+    - identifier: posts
+      name: Posts
+      url: /posts/
       weight: 10
     - identifier: tags
-      name: tags
+      name: Tags
       url: /tags/
       weight: 20
-    - identifier: example
-      name: example.org
-      url: https://example.org
+    - identifier: search
+      name: Search
+      url: /search/
       weight: 30
-    - identifier: google
-      name: google.com
-      url: https://example.com
-      weight: 30
+
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:

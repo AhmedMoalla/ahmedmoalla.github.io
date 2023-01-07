@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://ahmedmoalla.github.io/sitemap.xml
+Sitemap: https://blog.amoalla.dev/sitemap.xml

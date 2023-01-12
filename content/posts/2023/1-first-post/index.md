@@ -3,8 +3,7 @@ title: Why I started this blog
 slug: why-i-started-this-blog
 date: 2023-01-07
 draft: false
-tags:
-- personal
+tags: [personal]
 ---
 
 As a first post, I chose to write about why I started this blog. This will help me come back to it and give me a reason to not give up.

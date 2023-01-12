@@ -1,4 +1,85 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on amoalla.dev</title><link>https://blog.amoalla.dev/posts/</link><description>Recent content in Posts on amoalla.dev</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright><lastBuildDate>Sat, 07 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.amoalla.dev/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Why I started this blog</title><link>https://blog.amoalla.dev/posts/why-i-started-this-blog/</link><pubDate>Sat, 07 Jan 2023 00:00:00 +0000</pubDate><guid>https://blog.amoalla.dev/posts/why-i-started-this-blog/</guid><description>As a first post, I chose to write about why I started this blog. This will help me come back to it and give me a reason to not give up.
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on amoalla.dev</title><link>https://blog.amoalla.dev/posts/</link><description>Recent content in Posts on amoalla.dev</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</copyright><lastBuildDate>Thu, 12 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.amoalla.dev/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>How this blog is made</title><link>https://blog.amoalla.dev/posts/how-this-blog-is-made/</link><pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate><guid>https://blog.amoalla.dev/posts/how-this-blog-is-made/</guid><description>In this article, I would like to explain how this blog was made to incite more people to make theirs, to document the process I went through and I thought it would be an interesting idea for an article anyways.
+The Tech Stack There&amp;rsquo;s a lot of choices to be made to deploy a working blog with varying costs and complexity. In the beginning, I thought of making it as an SPA with React with some free CMS and hosting it on a VPS.</description><content type="html"><![CDATA[<p>In this article, I would like to explain how this blog was made to incite more people to make theirs,
+to document the process I went through and I thought it would be an interesting idea for an article anyways.</p>
+<h2 id="the-tech-stack">The Tech Stack</h2>
+<p>There&rsquo;s a lot of choices to be made to deploy a working blog with varying costs and complexity.
+In the beginning, I thought of making it as an <abbr title='Single Page Application'>SPA</abbr> with React
+with some free <abbr title='Content Management System'>CMS</abbr> and hosting it on a <abbr title='Virtual Private Server'>VPS</abbr>.
+But later on, I realised that I didn&rsquo;t need the flexibility that React offers me and I don&rsquo;t have the time to write the code.</p>
+<p>So, I opted for a static site generator as what I intend to do is just post articles.
+I am not familiar with <abbr title='Static Site Generators'>SSGs</abbr> so I looked for the simplest one out there and I chose to use <strong>Hugo</strong>.</p>
+<p>For deployment, the easiest and simplest one is GitHub Pages, so I went with that.</p>
+<h2 id="create-the-hugo-project">Create the Hugo Project</h2>
+<p>It&rsquo;s pretty easy to get a working &ldquo;Hello World&rdquo; with Hugo. First off, I installed the CLI following <a href="https://gohugo.io/installation/">these instructions</a>.
+Next up, I used the cli to initialize a new site as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hugo new site ahmedmoalla.github.io
+</span></span></code></pre></div><blockquote>
+<p>Notice the repo&rsquo;s name. It&rsquo;s in the format &lt;GITHUB_USERNAME&gt;.github.io. This naming convention is <strong>required</strong> to use GitHub Pages.</p>
+</blockquote>
+<h2 id="choose-a-hugo-theme">Choose a Hugo Theme</h2>
+<p>The theme I chose to use is <a href="https://hugo-theme-hermit.netlify.app/">Hermit</a>.
+To install it, I cloned it as a Git submodule under the <code>themes</code> folder as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git init
+</span></span><span style="display:flex;"><span>git submodule add https://github.com/Track3/hermit themes/hermit
+</span></span></code></pre></div><p>Next, I added the configuration needed to tell Hugo about the theme in the <code>config.toml</code> file by adding <code>theme = &quot;hermit&quot;</code>.</p>
+<p>That&rsquo;s it ! I had a working Hugo site with a nice, simple theme. To see the result locally, run <code>hugo server</code> on the root of the project.</p>
+<h2 id="deploy-the-site">Deploy the Site</h2>
+<p>Now I had a working site that I needed to deploy. The process is pretty straightforward with GitHub Pages.
+You only need to build your site with the CLI and push the result to a repository in the format <code>&lt;GITHUB_USERNAME&gt;.github.io</code>.</p>
+<p>This is easy and it works, but it requires you to build the files locally everytime you do a modification.
+Luckily, in the <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Hugo documentation</a>, they clearly explain how to automate this process using GitHub actions.</p>
+<p>Under the path <code>.github/workflows</code>, create a YAML file as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#268bd2">name</span>: Github Pages
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">branches</span>:
+</span></span><span style="display:flex;"><span>      - main  <span style="color:#586e75"># Set a branch that will trigger a deployment</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">pull_request</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">deploy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">runs-on</span>: ubuntu-22.04
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#268bd2">uses</span>: actions/checkout@v3
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#268bd2">submodules</span>: <span style="color:#cb4b16">true</span>  <span style="color:#586e75"># Fetch Hugo themes (true OR recursive)</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#268bd2">fetch-depth</span>: <span style="color:#2aa198">0</span>    <span style="color:#586e75"># Fetch all history for .GitInfo and .Lastmod</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#268bd2">name</span>: Setup Hugo
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">uses</span>: peaceiris/actions-hugo@v2
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#268bd2">hugo-version</span>: <span style="color:#2aa198">&#39;latest&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#268bd2">extended</span>: <span style="color:#cb4b16">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#268bd2">name</span>: Build
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">run</span>: hugo --minify
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#268bd2">name</span>: Deploy
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">uses</span>: peaceiris/actions-gh-pages@v3
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">if</span>: github.ref == &#39;refs/heads/main&#39;
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#268bd2">github_token</span>: ${{ secrets.GITHUB_TOKEN }}
+</span></span><span style="display:flex;"><span>          <span style="color:#268bd2">publish_dir</span>: ./public
+</span></span></code></pre></div><p>The workflow defined triggers when code is pushed in the <code>main</code> branch.
+The workflow clones the <code>main</code> branch, builds it with the CLI and then pushes the result to a <code>gh-pages</code> branch.</p>
+<p>With this workflow, the build becomes completely automatic.
+But, by default, GitHub Pages serves the content from the <code>main</code> branch, so I needed to point it to the <code>gh-pages</code> branch.
+Go to your repository&rsquo;s Settings &gt; Code and automation &gt; Pages, and change the branch to <code>gh-pages</code>.</p>
+<p><img src="change_branch.png" alt="Change target branch"></p>
+<p>The last thing to do is to add the <code>baseURL=https://&lt;GITHUB_USERNAME&gt;.github.io</code> property in the <code>config.toml</code> file as it is necessary for absolute links to work.</p>
+<p>That&rsquo;s it ! Now I had a working site on the domain <code>&lt;GITHUB_USERNAME&gt;.github.io</code></p>
+<h2 id="use-a-custom-domain">Use a Custom Domain</h2>
+<p>If you want your site to be served from a custom domain, the <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">documentation</a>
+for GitHub Pages explains how to do it.</p>
+<p>You need to create a CNAME record under your domain that points to <code>&lt;GITHUB_USERNAME&gt;.github.io</code>. In my case, I use Google
+domains and the process is straightforward. Under the domain management screen, go to DNS and add your record.</p>
+<p><img src="create_cname_record.png" alt="Create a CNAME record"></p>
+<p>On GitHub&rsquo;s side, we need to tell it that we intend to serve our site from a custom domain.</p>
+<p><img src="custom_domain.png" alt="Create a CNAME record"></p>
+<p>The last step is to update the <code>baseURL</code> property in the <code>config.toml</code> file to point to your custom domain.</p>
+<p>With this, I had a fully working blog with automated builds and served on a custom domain over HTTPS.</p>
+]]></content></item><item><title>Why I started this blog</title><link>https://blog.amoalla.dev/posts/why-i-started-this-blog/</link><pubDate>Sat, 07 Jan 2023 00:00:00 +0000</pubDate><guid>https://blog.amoalla.dev/posts/why-i-started-this-blog/</guid><description>As a first post, I chose to write about why I started this blog. This will help me come back to it and give me a reason to not give up.
 I have always felt the need to write about tech, to write about my discoveries as a software engineer. I want to share my findings and maybe discuss them with my fellow software development addicts. I love technology, it&amp;rsquo;s what I do for a living, it&amp;rsquo;s what I do on my free time.</description><content type="html"><![CDATA[<p>As a first post, I chose to write about why I started this blog. This will help me come back to it and give me a reason to not give up.</p>
 <p>I have always felt the need to write about tech, to write about my discoveries as a software engineer.
 I want to share my findings and maybe discuss them with my fellow software development addicts.
